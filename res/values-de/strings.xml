@@ -1,0 +1,12 @@
+<resources>
+
+    <string name="action_settings">Einstellungen</string>
+    <string name="button_reconnect">Neu verbinden</string>
+    <string name="date_time">Datum/Uhrzeit:</string>
+    <string name="device_name">Gerätename:</string>
+    <string name="downstream">Downstream:</string>
+    <string name="dsl_link">DSL-Status:</string>
+    <string name="serial">Seriennummer:</string>
+    <string name="upstream">Upstream:</string>
+
+</resources>
