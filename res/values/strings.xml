@@ -2,17 +2,21 @@
 <resources>
     <string name="app_name">Speedport Info</string>
     <string name="action_settings">Settings</string>
-    <string name="device_name">Device name:</string>
-    <string name="date_time">Date/Time:</string>
-    <string name="dsl_link">DSL/Link:</string>
-    <string name="internet">Internet:</string>
-    <string name="downstream">Downstream:</string>
-    <string name="upstream">Upstream:</string>
-    <string name="wlan_24">WLAN 2.4GHz (SSID):</string>
-    <string name="wlan_5">WLAN 5GHz (SSID):</string>
-    <string name="wps_state">WPS:</string>
-    <string name="wlan_to_go">WLAN TO GO (HotSpot):</string>
-    <string name="firmware_version">Firmware:</string>
-    <string name="serial">Serial number:</string>
+    <string name="device_name">Device name</string>
+    <string name="date_time">Date/Time</string>
+    <string name="dsl_link">DSL/Link</string>
+    <string name="internet">Internet</string>
+    <string name="downstream">Downstream</string>
+    <string name="upstream">Upstream</string>
+    <string name="wlan_24">WLAN 2.4GHz</string>
+    <string name="wlan_5">WLAN 5GHz</string>
+    <string name="ssid">SSID</string>
+    <string name="wps_state">WPS</string>
+    <string name="wlan_to_go">WLAN TO GO (HotSpot)</string>
+    <string name="firmware_version">Firmware</string>
+    <string name="serial">Serial number</string>
     <string name="button_reconnect">Reconnect</string>
+    <string name="active">active</string>
+    <string name="deactivated">deactivated</string>
+    <string name="not_active">not active</string>
 </resources>

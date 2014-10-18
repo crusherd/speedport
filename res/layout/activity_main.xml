@@ -10,20 +10,25 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/border"
         android:fitsSystemWindows="true"
         android:orientation="horizontal"
         android:shrinkColumns="0" >
         <TableRow>
             <TextView
-                android:id="@+id/textViewSpeedportNameKey"
+                android:id="@+id/textViewDeviceNameKey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:text="@string/device_name"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             <TextView
-                android:id="@+id/textViewSpeedportNameValue"
+                android:id="@+id/textViewDeviceNameValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
         <TableRow>
@@ -31,12 +36,16 @@
                 android:id="@+id/textViewDateKey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:text="@string/date_time"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             <TextView
                 android:id="@+id/textViewDateValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
         <TableRow>
@@ -44,12 +53,16 @@
                 android:id="@+id/textViewDSLStateKey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:text="@string/dsl_link"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             <TextView
                 android:id="@+id/textViewDSLStateValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
         <TableRow>
@@ -57,12 +70,16 @@
                 android:id="@+id/textViewInternetStateKey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:text="@string/internet"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             <TextView
                 android:id="@+id/textViewInternetStateValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
         <TableRow>
@@ -70,12 +87,16 @@
                 android:id="@+id/textViewDownStreamKey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:text="@string/downstream"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             <TextView
                 android:id="@+id/textViewDownStreamValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
         <TableRow>
@@ -83,12 +104,16 @@
                 android:id="@+id/textViewUpStreamKey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:text="@string/upstream"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             <TextView
                 android:id="@+id/textViewUpStreamValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
         <TableRow>
@@ -96,12 +121,16 @@
                 android:id="@+id/textViewWLAN24Key"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:text="@string/wlan_24"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             <TextView
                 android:id="@+id/textViewWLAN24Value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
         <TableRow>
@@ -109,12 +138,33 @@
                 android:id="@+id/textViewWLAN5Key"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:text="@string/wlan_5"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             <TextView
                 android:id="@+id/textViewWLAN5Value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/textViewSSIDKey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:gravity="center"
+                android:text="@string/ssid"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TextView
+                android:id="@+id/textViewSSIDValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
         <TableRow>
@@ -122,51 +172,67 @@
                 android:id="@+id/textViewWPSStateKey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:text="@string/wps_state"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             <TextView
                 android:id="@+id/textViewWPSStateValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
         <TableRow>
             <TextView
                 android:id="@+id/textViewWLANTOGOStateKey"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:text="@string/wlan_to_go"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             <TextView
                 android:id="@+id/textViewWLANTOGOStateValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
         <TableRow>
             <TextView
                 android:id="@+id/textViewFirmwareVersionKey"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:text="@string/firmware_version"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             <TextView
                 android:id="@+id/textViewFirmwareVersionValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
         <TableRow>
             <TextView
                 android:id="@+id/textViewSerialKey"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:text="@string/serial"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             <TextView
                 android:id="@+id/textViewSerialValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/border"
+                android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
     </TableLayout>
@@ -179,5 +245,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:text="@string/button_reconnect" />
+        android:text="@string/button_reconnect"
+        android:visibility="invisible" />
 </RelativeLayout>
