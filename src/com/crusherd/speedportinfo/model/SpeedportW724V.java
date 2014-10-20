@@ -2,9 +2,6 @@ package com.crusherd.speedportinfo.model;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import android.annotation.TargetApi;
 import android.os.Build;
@@ -15,8 +12,8 @@ import com.crusherd.speedportinfo.html.SpeedportContent;
 
 /**
  * Class to collect information from a Speedport W724V router.
- * @author Robert Danczak
  *
+ * @author Robert Danczak
  */
 public class SpeedportW724V extends SpeedportHandler {
 
@@ -27,41 +24,38 @@ public class SpeedportW724V extends SpeedportHandler {
         super("http://speedport.ip/data/Status.json");
     }
 
-    /*
-     * (non-Javadoc)
-     * @see com.crusherd.speedportinfo.model.SpeedportHandler#checkAndProcess()
+    /**
+     * {@inheritDoc}
      */
     @Override
-    public SpeedportContent checkAndProcess() {
-        HttpURLConnection con = null;
-        try {
-            final URL url = new URL(urlString);
-            con = (HttpURLConnection) url.openConnection();
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-                return processWithoutReader(con);
-            }
-            else {
-                return processWithReader(con);
-            }
-        } catch (final MalformedURLException e) {
-            e.printStackTrace();
-        } catch (final IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (con != null) {
-                con.disconnect();
-            }
+    protected SpeedportContent processDataInDevice() throws IOException {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+            return processWithoutReader();
         }
-        return new SpeedportContent();
+        else {
+            return processWithReader();
+        }
     }
 
-    private SpeedportContent processWithoutReader(final HttpURLConnection con) {
+    /**
+     * Processes the given JSON-Data with a parser for API < 11.
+     *
+     * @return A valid and filled {@link SpeedportContent}
+     * @throws IOException
+     */
+    private SpeedportContent processWithoutReader() {
         return null;
     }
 
+    /**
+     * Processes the given JSON-Data with a JSON-Reader for API >= 11.
+     *
+     * @return A valid and filled {@link SpeedportContent}
+     * @throws IOException
+     */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private SpeedportContent processWithReader(final HttpURLConnection con) throws IOException {
-        final JsonReader reader = new JsonReader(new InputStreamReader(con.getInputStream()));
+    private SpeedportContent processWithReader() throws IOException {
+        final JsonReader reader = new JsonReader(new InputStreamReader(connection.getInputStream()));
         final SpeedportContent content = new SpeedportContent();
         reader.beginArray();
         while (reader.hasNext()) {
@@ -118,7 +112,8 @@ public class SpeedportW724V extends SpeedportHandler {
                 }
                 else {
                     content.setWpsActive(true);
-                };
+                }
+                ;
             }
             else if (varID.equals(Constants.HSFON_STATUS)) {
                 if ("0".equals(varValue)) {
@@ -126,7 +121,8 @@ public class SpeedportW724V extends SpeedportHandler {
                 }
                 else {
                     content.setWlanTOGOActive(true);
-                };
+                }
+                ;
             }
             else if (varID.equals(Constants.FIRMWARE_VERSION)) {
                 content.setFirmware(varValue);
@@ -140,4 +136,5 @@ public class SpeedportW724V extends SpeedportHandler {
         content.setValid(true);
         return content;
     }
+
 }
