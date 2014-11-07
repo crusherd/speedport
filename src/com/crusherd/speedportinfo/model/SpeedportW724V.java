@@ -1,5 +1,6 @@
 package com.crusherd.speedportinfo.model;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -43,8 +44,19 @@ public class SpeedportW724V extends SpeedportHandler {
      * @return A valid and filled {@link SpeedportContent}
      * @throws IOException
      */
-    private SpeedportContent processWithoutReader() {
-        return null;
+    private SpeedportContent processWithoutReader() throws IOException {
+        final BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        final SpeedportContent content = new SpeedportContent();
+
+        String line = reader.readLine();
+        while (line != null) {
+
+
+            line = reader.readLine();
+        }
+
+        content.setValid(true);
+        return content;
     }
 
     /**
@@ -137,4 +149,12 @@ public class SpeedportW724V extends SpeedportHandler {
         return content;
     }
 
+    /**
+     * Extracts a substring from the given string and returns it.
+     * @param toExtract
+     * @return
+     */
+    private String extractSubFromString(final String toExtract) {
+        return null;
+    }
 }
