@@ -3,6 +3,8 @@ package com.crusherd.speedportinfo.constants;
 public enum Constants {
     ;
 
+    public static final String EMPTY_STRING = "";
+
     public static final String ONLINE_STATUS = "onlinestatus";
     public static final String DEVICE_NAME = "device_name";
     public static final String DATETIME = "datetime";

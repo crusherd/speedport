@@ -25,4 +25,10 @@ public class SpeedportW900V extends SpeedportHandler {
         return null;
     }
 
+	@Override
+    protected boolean validate(SpeedportContent content) {
+	    // TODO Auto-generated method stub
+	    return false;
+    }
+
 }

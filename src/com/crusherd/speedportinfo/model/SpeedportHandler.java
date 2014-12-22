@@ -23,12 +23,22 @@ public abstract class SpeedportHandler {
     }
 
     /**
-     * Children need to implement product specific checks and process them.
+     * Children need to implement product specific logic to process the data.
      *
      * @return A {@link SpeedportContent} which contains all collected data.
      * @throws IOException
      */
     protected abstract SpeedportContent processDataInDevice() throws IOException;
+
+    /**
+     * Children need to implement product specifc validation.
+     *
+     * @param content
+     *            - {@link SpeedportContent} to validate
+     * @return True if the content for the specific model is complete filled,
+     *         otherwise false.
+     */
+    protected abstract boolean validate(SpeedportContent content);
 
     public SpeedportContent checkAndProcess() {
         SpeedportContent content = new SpeedportContent();
@@ -36,6 +46,7 @@ public abstract class SpeedportHandler {
             disableConnectionReuseIfNecessary();
             establishConnection();
             content = processDataInDevice();
+            content.setValid(validate(content));
         } catch (final MalformedURLException e) {
             e.printStackTrace();
         } catch (final IOException e) {

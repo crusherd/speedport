@@ -69,8 +69,8 @@ public class MainActivity extends ActionBarActivity {
         if (netInfo == null) {
             return false;
         }
-        final boolean isWifiEnabled = netInfo.getType() == ConnectivityManager.TYPE_WIFI;
-        final boolean isConnected = netInfo.getState() == NetworkInfo.State.CONNECTED;
+        final boolean isWifiEnabled = (netInfo.getType() == ConnectivityManager.TYPE_WIFI);
+        final boolean isConnected = (netInfo.getState() == NetworkInfo.State.CONNECTED);
         return (isWifiEnabled && isConnected);
     }
 
