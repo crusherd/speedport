@@ -6,7 +6,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import android.os.Build;
+import android.util.Log;
 
+import com.crusherd.speedportinfo.constants.Constants;
 import com.crusherd.speedportinfo.html.SpeedportContent;
 
 public abstract class SpeedportHandler {
@@ -40,6 +42,65 @@ public abstract class SpeedportHandler {
      */
     protected abstract boolean validate(SpeedportContent content);
 
+    /**
+     * Processes the given Strings {@code varID} and {@code varValue} and
+     * assings it to the correct {@link SpeedportContent} value.
+     *
+     * @param content
+     *            - SpeedportContent to save data to.
+     * @param varID
+     *            - Any ID will be processed if it matches in {@link Constants}.
+     * @param varValue
+     *            - The value to the assigned ID.
+     */
+    protected void processExtractedData(final SpeedportContent content, final String varID, final String varValue) {
+        if (varID.equals(Constants.DEVICE_NAME)) {
+            content.setDeviceName(varValue);
+        } else if (varID.equals(Constants.DATETIME)) {
+            content.setDate(varValue);
+        } else if (varID.equals(Constants.DSL_LINK_STATUS)) {
+            content.setDslState(varValue);
+        } else if (varID.equals(Constants.ONLINE_STATUS)) {
+            content.setInternetState(varValue);
+        } else if (varID.equals(Constants.DSL_DOWNSTREAM)) {
+            content.setDownstream(varValue);
+        } else if (varID.equals(Constants.DSL_UPSTREAM)) {
+            content.setUpstream(varValue);
+        } else if (varID.equals(Constants.USE_WLAN)) {
+            if ("0".equals(varValue)) {
+                content.setWlan24Active(false);
+            } else {
+                content.setWlan24Active(true);
+            }
+        } else if (varID.equals(Constants.USE_WLAN_5GHZ)) {
+            if ("0".equals(varValue)) {
+                content.setWlan5Active(false);
+            } else {
+                content.setWlan5Active(true);
+            }
+        } else if (varID.equals(Constants.WLAN_SSID)) {
+            content.setSsid(varValue);
+        } else if (varID.contains(Constants.USE_WPS)) {
+            if ("0".equals(varValue)) {
+                content.setWpsActive(false);
+            } else {
+                content.setWpsActive(true);
+            }
+            ;
+        } else if (varID.equals(Constants.HSFON_STATUS)) {
+            if ("0".equals(varValue)) {
+                content.setWlanTOGOActive(false);
+            } else {
+                content.setWlanTOGOActive(true);
+            }
+            ;
+        } else if (varID.equals(Constants.FIRMWARE_VERSION)) {
+            content.setFirmware(varValue);
+        } else if (varID.equals(Constants.SERIAL_NUMBER)) {
+            content.setSerial(varValue);
+        }
+    }
+
     public SpeedportContent checkAndProcess() {
         SpeedportContent content = new SpeedportContent();
         try {
@@ -48,8 +109,10 @@ public abstract class SpeedportHandler {
             content = processDataInDevice();
             content.setValid(validate(content));
         } catch (final MalformedURLException e) {
+            Log.e("<SpeedportInfo>::MalformedURLException", e.getLocalizedMessage());
             e.printStackTrace();
         } catch (final IOException e) {
+            Log.e("<SpeedportInfo>::IOException", e.getLocalizedMessage());
             e.printStackTrace();
         } finally {
             disconnect();
