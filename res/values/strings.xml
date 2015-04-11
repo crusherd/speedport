@@ -16,6 +16,7 @@
     <string name="firmware_version">Firmware</string>
     <string name="serial">Serial number</string>
     <string name="button_reconnect">Reconnect</string>
+    <string name="button_refresh">Refresh</string>
     <string name="active">active</string>
     <string name="deactivated">deactivated</string>
     <string name="not_active">not active</string>

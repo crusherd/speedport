@@ -56,52 +56,71 @@ public abstract class SpeedportHandler {
     protected void processExtractedData(final SpeedportContent content, final String varID, final String varValue) {
         if (varID.equals(Constants.DEVICE_NAME)) {
             content.setDeviceName(varValue);
-        } else if (varID.equals(Constants.DATETIME)) {
+        }
+        else if (varID.equals(Constants.DATETIME)) {
             content.setDate(varValue);
-        } else if (varID.equals(Constants.DSL_LINK_STATUS)) {
+        }
+        else if (varID.equals(Constants.DSL_LINK_STATUS)) {
             content.setDslState(varValue);
-        } else if (varID.equals(Constants.ONLINE_STATUS)) {
+        }
+        else if (varID.equals(Constants.ONLINE_STATUS)) {
             content.setInternetState(varValue);
-        } else if (varID.equals(Constants.DSL_DOWNSTREAM)) {
+        }
+        else if (varID.equals(Constants.DSL_DOWNSTREAM)) {
             content.setDownstream(varValue);
-        } else if (varID.equals(Constants.DSL_UPSTREAM)) {
+        }
+        else if (varID.equals(Constants.DSL_UPSTREAM)) {
             content.setUpstream(varValue);
-        } else if (varID.equals(Constants.USE_WLAN)) {
+        }
+        else if (varID.equals(Constants.USE_WLAN)) {
             if ("0".equals(varValue)) {
                 content.setWlan24Active(false);
-            } else {
+            }
+            else {
                 content.setWlan24Active(true);
             }
-        } else if (varID.equals(Constants.USE_WLAN_5GHZ)) {
+        }
+        else if (varID.equals(Constants.USE_WLAN_5GHZ)) {
             if ("0".equals(varValue)) {
                 content.setWlan5Active(false);
-            } else {
+            }
+            else {
                 content.setWlan5Active(true);
             }
-        } else if (varID.equals(Constants.WLAN_SSID)) {
+        }
+        else if (varID.equals(Constants.WLAN_SSID)) {
             content.setSsid(varValue);
-        } else if (varID.contains(Constants.USE_WPS)) {
+        }
+        else if (varID.contains(Constants.USE_WPS)) {
             if ("0".equals(varValue)) {
                 content.setWpsActive(false);
-            } else {
+            }
+            else {
                 content.setWpsActive(true);
             }
             ;
-        } else if (varID.equals(Constants.HSFON_STATUS)) {
+        }
+        else if (varID.equals(Constants.HSFON_STATUS)) {
             if ("0".equals(varValue)) {
                 content.setWlanTOGOActive(false);
-            } else {
+            }
+            else {
                 content.setWlanTOGOActive(true);
             }
             ;
-        } else if (varID.equals(Constants.FIRMWARE_VERSION)) {
+        }
+        else if (varID.equals(Constants.FIRMWARE_VERSION)) {
             content.setFirmware(varValue);
-        } else if (varID.equals(Constants.SERIAL_NUMBER)) {
+        }
+        else if (varID.equals(Constants.SERIAL_NUMBER)) {
             content.setSerial(varValue);
         }
     }
 
-    public SpeedportContent checkAndProcess() {
+    /**
+     * @return
+     */
+    public SpeedportContent processAndCheckValidity() {
         SpeedportContent content = new SpeedportContent();
         try {
             disableConnectionReuseIfNecessary();

@@ -10,11 +10,11 @@ public class HTMLHandlerTask extends AsyncTask<Void, Void, SpeedportContent> {
     @Override
     protected SpeedportContent doInBackground(final Void... notUsed) {
         SpeedportContent content;
-        content = new SpeedportW724V().checkAndProcess();
+        content = new SpeedportW724V().processAndCheckValidity();
         if ((content != null) && content.isValid()) {
             return content;
         }
-        content = new SpeedportW900V().checkAndProcess();
+        content = new SpeedportW900V().processAndCheckValidity();
         if ((content != null) && content.isValid()) {
             return content;
         }

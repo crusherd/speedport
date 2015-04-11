@@ -9,4 +9,5 @@
     <string name="active">aktiv</string>
     <string name="deactivated">deaktiviert</string>
     <string name="not_active">nicht aktiv</string>
+    <string name="button_refresh">Neu laden</string>
 </resources>

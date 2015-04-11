@@ -18,5 +18,12 @@ public enum Constants {
     public static final String HSFON_STATUS = "hsfon_status";
     public static final String FIRMWARE_VERSION = "firmware_version";
     public static final String SERIAL_NUMBER = "serial_number";
-    public static final String kBitperSecond = " kBit/s";
+    public static final String K_BIT_PER_SECOND = " kBit/s";
+    public static final String ADD_PHONE_NUMBER = "addphonenumber";
+
+    public static final String ENTRY_ID = "id";
+    public static final String ENTRY_PHONE_NUMBER = "phone_number";
+    public static final String ENTRY_FAIL_REASON = "failreason";
+    public static final String ENTRY_STATUS = "status";
+    public static final String ENTRY_VOIP_ERROR = "voip_errnr";
 }

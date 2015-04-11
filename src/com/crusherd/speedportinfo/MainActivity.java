@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.crusherd.speedportinfo.constants.Constants;
@@ -18,20 +21,37 @@ import com.crusherd.speedportinfo.html.SpeedportContent;
 
 public class MainActivity extends ActionBarActivity {
 
+    private final OnClickListener refreshContent = new OnClickListener() {
+
+        @Override
+        public void onClick(final View v) {
+            try {
+                final SpeedportContent content = new HTMLHandlerTask().execute().get();
+                updateUI(content);
+            } catch (final InterruptedException e) {
+                e.printStackTrace();
+            } catch (final ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+        // getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
 
         setContentView(R.layout.activity_main);
+        final Button refreshButton = (Button) findViewById(R.id.buttonRefresh);
+        refreshButton.setOnClickListener(refreshContent);
 
         try {
-            if(!isWifiEnabled()) {
+            if (!isWifiEnabled()) {
                 enableWifi();
             }
             else {
-            final SpeedportContent content = new HTMLHandlerTask().execute().get();
-            updateUI(content);
+                final SpeedportContent content = new HTMLHandlerTask().execute().get();
+                updateUI(content);
             }
         } catch (final InterruptedException e) {
             e.printStackTrace();
@@ -61,6 +81,7 @@ public class MainActivity extends ActionBarActivity {
 
     /**
      * Checks if Wifi is enabled and we are connected.
+     *
      * @return True if enabled and connected, otherwise false.
      */
     private boolean isWifiEnabled() {
@@ -73,7 +94,6 @@ public class MainActivity extends ActionBarActivity {
         final boolean isConnected = (netInfo.getState() == NetworkInfo.State.CONNECTED);
         return (isWifiEnabled && isConnected);
     }
-
 
     private void enableWifi() {
         final WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
@@ -94,10 +114,10 @@ public class MainActivity extends ActionBarActivity {
         textView.setText(content.getInternetState());
 
         textView = (TextView) findViewById(R.id.textViewDownStreamValue);
-        textView.setText(content.getDownstream() + Constants.kBitperSecond);
+        textView.setText(content.getDownstream() + Constants.K_BIT_PER_SECOND);
 
         textView = (TextView) findViewById(R.id.textViewUpStreamValue);
-        textView.setText(content.getUpstream() + Constants.kBitperSecond);
+        textView.setText(content.getUpstream() + Constants.K_BIT_PER_SECOND);
 
         textView = (TextView) findViewById(R.id.textViewWLAN24Value);
         textView.setText(content.isWlan24Active() ? R.string.active : R.string.deactivated);

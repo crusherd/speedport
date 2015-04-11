@@ -3,13 +3,16 @@ package com.crusherd.speedportinfo.model;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.util.JsonReader;
+import android.util.JsonToken;
 
 import com.crusherd.speedportinfo.constants.Constants;
 import com.crusherd.speedportinfo.html.SpeedportContent;
+import com.crusherd.speedportinfo.html.SpeedportPhoneEntry;
 
 /**
  * Class to collect information from a Speedport W724V router.
@@ -32,7 +35,8 @@ public class SpeedportW724V extends SpeedportHandler {
     protected SpeedportContent processDataInDevice() throws IOException {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
             return processWithoutReader();
-        } else {
+        }
+        else {
             return processWithReader();
         }
     }
@@ -41,7 +45,7 @@ public class SpeedportW724V extends SpeedportHandler {
      * {@inheritDoc}
      */
     @Override
-    protected boolean validate(SpeedportContent content) {
+    protected boolean validate(final SpeedportContent content) {
         if (!content.getDeviceName().equals(Constants.EMPTY_STRING)
                 && !content.getDslState().equals(Constants.EMPTY_STRING)
                 && !content.getDownstream().equals(Constants.EMPTY_STRING)
@@ -69,9 +73,9 @@ public class SpeedportW724V extends SpeedportHandler {
         String line = reader.readLine();
         while (line != null) {
             if (line.contains("varid")) {
-                String varID = extractKey(line);
+                final String varID = extractKey(line);
                 line = reader.readLine();
-                String varValue = extractValue(line);
+                final String varValue = extractValue(line);
                 processExtractedData(content, varID, varValue);
             }
             line = reader.readLine();
@@ -91,14 +95,20 @@ public class SpeedportW724V extends SpeedportHandler {
         final JsonReader reader = new JsonReader(new InputStreamReader(connection.getInputStream()));
         final SpeedportContent content = new SpeedportContent();
         reader.beginArray();
-        while (reader.hasNext()) {
+        while (reader.hasNext() && (reader.peek() != JsonToken.END_ARRAY)) {
             reader.beginObject();
             reader.skipValue();
             reader.skipValue();
             reader.skipValue();
             final String varID = reader.nextString();
             reader.skipValue();
-            final String varValue = reader.nextString();
+            String varValue = "";
+            if (Constants.ADD_PHONE_NUMBER.equals(varID)) {
+                processSubArray(reader, content.getPhoneEntries());
+            }
+            else {
+                varValue = reader.nextString();
+            }
             reader.endObject();
             processExtractedData(content, varID, varValue);
         }
@@ -115,7 +125,7 @@ public class SpeedportW724V extends SpeedportHandler {
      * @param stringWithKey
      * @return - The key for the JSON element
      */
-    private String extractKey(String stringWithKey) {
+    private String extractKey(final String stringWithKey) {
         String[] splitted = stringWithKey.split("\"varid\":\"");
         splitted = splitted[1].split("\"");
         return splitted[0];
@@ -129,9 +139,64 @@ public class SpeedportW724V extends SpeedportHandler {
      * @param stringWithValue
      * @return - The value for the JSON element
      */
-    private String extractValue(String stringWithValue) {
+    private String extractValue(final String stringWithValue) {
         String[] splitted = stringWithValue.split("\"varvalue\":\"");
         splitted = splitted[1].split("\"");
         return splitted[0];
+    }
+
+    /**
+     * Processes a subarray with a JSON Reader.
+     *
+     * @param reader
+     * @throws IOException
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    private void processSubArray(final JsonReader reader, final List<SpeedportPhoneEntry> phoneEntries) throws IOException {
+        reader.beginArray();
+        while (reader.hasNext() && (reader.peek() != JsonToken.END_ARRAY)) {
+            phoneEntries.add(extractPhoneEntry(reader));
+        }
+
+        reader.endArray();
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    private SpeedportPhoneEntry extractPhoneEntry(final JsonReader reader) throws IOException {
+        reader.beginObject();
+        for (int i = 0; i < 5; i++) {
+            reader.skipValue();
+        }
+        final String varIDValue = reader.nextString();
+        reader.endObject();
+        reader.beginObject();
+        for (int i = 0; i < 5; i++) {
+            reader.skipValue();
+        }
+        final String varPhoneNumberValue = reader.nextString();
+        reader.endObject();
+        reader.beginObject();
+        for (int i = 0; i < 5; i++) {
+            reader.skipValue();
+        }
+        final String varFailReasonValue = reader.nextString();
+        reader.endObject();
+        reader.beginObject();
+        for (int i = 0; i < 5; i++) {
+            reader.skipValue();
+        }
+        final String varStatusValue = reader.nextString();
+        reader.endObject();
+        reader.beginObject();
+        for (int i = 0; i < 5; i++) {
+            reader.skipValue();
+        }
+        final String varVOIPErrorValue = reader.nextString();
+        reader.endObject();
+
+        return new SpeedportPhoneEntry(Integer.parseInt(varIDValue), varPhoneNumberValue, Integer
+                .parseInt(varFailReasonValue),
+                varStatusValue,
+                varVOIPErrorValue);
     }
 }
