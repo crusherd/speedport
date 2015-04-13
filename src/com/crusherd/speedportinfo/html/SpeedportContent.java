@@ -3,12 +3,17 @@ package com.crusherd.speedportinfo.html;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Contains all data, which a Speedport delivers.
+ *
+ * @author Robert Danczak
+ */
 public class SpeedportContent {
 
     private String deviceName = "";
     private String date = "";
     private String dslState = "";
-    private String internetActive = "";
+    private String internetState = "";
     private String downstream = "";
     private String upstream = "";
     private boolean wlan24Active;
@@ -19,10 +24,10 @@ public class SpeedportContent {
     private String firmware = "";
     private String serial = "";
     private boolean valid;
-    List<SpeedportPhoneEntry> phoneEntries = new ArrayList<SpeedportPhoneEntry>();
+    private List<SpeedportPhoneEntry> phoneEntries = new ArrayList<SpeedportPhoneEntry>();
 
     public String getDeviceName() {
-        return deviceName;
+        return this.deviceName;
     }
 
     public void setDeviceName(final String deviceName) {
@@ -30,7 +35,7 @@ public class SpeedportContent {
     }
 
     public String getDate() {
-        return date;
+        return this.date;
     }
 
     public void setDate(final String date) {
@@ -38,7 +43,7 @@ public class SpeedportContent {
     }
 
     public String getDslState() {
-        return dslState;
+        return this.dslState;
     }
 
     public void setDslState(final String dslState) {
@@ -46,15 +51,15 @@ public class SpeedportContent {
     }
 
     public String getInternetState() {
-        return internetActive;
+        return this.internetState;
     }
 
-    public void setInternetState(final String internetActive) {
-        this.internetActive = internetActive;
+    public void setInternetState(final String internetState) {
+        this.internetState = internetState;
     }
 
     public String getDownstream() {
-        return downstream;
+        return this.downstream;
     }
 
     public void setDownstream(final String downstream) {
@@ -62,7 +67,7 @@ public class SpeedportContent {
     }
 
     public String getUpstream() {
-        return upstream;
+        return this.upstream;
     }
 
     public void setUpstream(final String upstream) {
@@ -70,7 +75,7 @@ public class SpeedportContent {
     }
 
     public boolean isWlan24Active() {
-        return wlan24Active;
+        return this.wlan24Active;
     }
 
     public void setWlan24Active(final boolean wlan24Active) {
@@ -78,7 +83,7 @@ public class SpeedportContent {
     }
 
     public boolean isWlan5Active() {
-        return wlan5Active;
+        return this.wlan5Active;
     }
 
     public void setWlan5Active(final boolean wlan5Active) {
@@ -86,7 +91,7 @@ public class SpeedportContent {
     }
 
     public String getSsid() {
-        return ssid;
+        return this.ssid;
     }
 
     public void setSsid(final String ssid) {
@@ -94,7 +99,7 @@ public class SpeedportContent {
     }
 
     public boolean isWpsActive() {
-        return wpsActive;
+        return this.wpsActive;
     }
 
     public void setWpsActive(final boolean wpsActive) {
@@ -102,7 +107,7 @@ public class SpeedportContent {
     }
 
     public boolean isWlanTOGOActive() {
-        return wlanTOGOActive;
+        return this.wlanTOGOActive;
     }
 
     public void setWlanTOGOActive(final boolean wlanTOGOActive) {
@@ -110,7 +115,7 @@ public class SpeedportContent {
     }
 
     public String getFirmware() {
-        return firmware;
+        return this.firmware;
     }
 
     public void setFirmware(final String firmware) {
@@ -118,7 +123,7 @@ public class SpeedportContent {
     }
 
     public String getSerial() {
-        return serial;
+        return this.serial;
     }
 
     public void setSerial(final String serial) {
@@ -126,7 +131,7 @@ public class SpeedportContent {
     }
 
     public boolean isValid() {
-        return valid;
+        return this.valid;
     }
 
     public void setValid(final boolean valid) {
@@ -134,7 +139,7 @@ public class SpeedportContent {
     }
 
     public List<SpeedportPhoneEntry> getPhoneEntries() {
-        return phoneEntries;
+        return this.phoneEntries;
     }
 
     public void setPhoneEntries(final List<SpeedportPhoneEntry> phoneEntries) {
