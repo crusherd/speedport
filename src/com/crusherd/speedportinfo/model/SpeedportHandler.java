@@ -57,6 +57,9 @@ public abstract class SpeedportHandler {
         if (varID.equals(Constants.DEVICE_NAME)) {
             content.setDeviceName(varValue);
         }
+        else if (varID.equals(Constants.DEVICE_TYPE)) {
+            content.setDeviceType(varValue);
+        }
         else if (varID.equals(Constants.DATETIME)) {
             content.setDate(varValue);
         }

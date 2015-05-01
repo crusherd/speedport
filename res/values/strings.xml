@@ -20,4 +20,8 @@
     <string name="active">active</string>
     <string name="deactivated">deactivated</string>
     <string name="not_active">not active</string>
+    <string name="telephony">Telephone</string>
+    <string name="wifi_enabling">Activating Wifi</string>
+    <string name="wifi_enabled">Wifi activated</string>
+    <string name="refreshing">Refreshing&#8230;</string>
 </resources>

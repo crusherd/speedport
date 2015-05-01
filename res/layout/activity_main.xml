@@ -1,19 +1,22 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:weightSum="100"
     tools:context="com.crusherd.speedportinfo.MainActivity">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_height="0dp"
+        android:layout_weight="85"
         android:clipChildren="true"
         android:fadeScrollbars="true"
-        android:scrollbarAlwaysDrawVerticalTrack="false">
+        android:scrollbarAlwaysDrawVerticalTrack="false"
+        android:scrollbars="vertical">
         <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -83,6 +86,23 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"/>
                 <TextView
                     android:id="@+id/textViewInternetStateValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border"
+                    android:gravity="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:id="@+id/textViewTelephonyStateKey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border"
+                    android:gravity="center"
+                    android:text="@string/telephony"
+                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                <TextView
+                    android:id="@+id/textViewTelephonyStateValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/border"
@@ -244,25 +264,30 @@
             </TableRow>
         </TableLayout>
     </ScrollView>
-    <Button
-        android:id="@+id/buttonRefresh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:clickable="true"
-        android:longClickable="false"
-        android:onClick="refreshContent"
-        android:text="@string/button_refresh"
-        android:visibility="visible"/>
-    <Button
-        android:id="@+id/buttonReconnect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/button_reconnect"
-        android:visibility="invisible"/>
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15">
+        <Button
+            android:id="@+id/buttonRefresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:clickable="true"
+            android:longClickable="false"
+            android:onClick="refreshContent"
+            android:text="@string/button_refresh"
+            android:visibility="visible"/>
+        <Button
+            android:id="@+id/buttonReconnect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/button_reconnect"
+            android:visibility="visible"/>
+    </RelativeLayout>
+</LinearLayout>

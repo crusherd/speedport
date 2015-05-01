@@ -46,15 +46,16 @@ public class SpeedportW724V extends SpeedportHandler {
      */
     @Override
     protected boolean validate(final SpeedportContent content) {
-        if (!content.getDeviceName().equals(Constants.EMPTY_STRING)
-                && !content.getDslState().equals(Constants.EMPTY_STRING)
-                && !content.getDownstream().equals(Constants.EMPTY_STRING)
-                && !content.getFirmware().equals(Constants.EMPTY_STRING)
-                && !content.getInternetState().equals(Constants.EMPTY_STRING)
-                && !content.getSerial().equals(Constants.EMPTY_STRING)
-                && !content.getSsid().equals(Constants.EMPTY_STRING)
-                && !content.getUpstream().equals(Constants.EMPTY_STRING)
-                && !content.getDate().equals(Constants.EMPTY_STRING)) {
+        if (!content.getDeviceName().isEmpty()
+                && !content.getDslState().isEmpty()
+                && !content.getDownstream().isEmpty()
+                && !content.getFirmware().isEmpty()
+                && !content.getInternetState().isEmpty()
+                && !content.getSerial().isEmpty()
+                && !content.getSsid().isEmpty()
+                && !content.getUpstream().isEmpty()
+                && !content.getDate().isEmpty()
+                && !content.getDeviceType().isEmpty()) {
             return true;
         }
         return false;

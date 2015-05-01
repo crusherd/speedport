@@ -7,6 +7,7 @@ public enum Constants {
 
     public static final String ONLINE_STATUS = "onlinestatus";
     public static final String DEVICE_NAME = "device_name";
+    public static final String DEVICE_TYPE = "device_type";
     public static final String DATETIME = "datetime";
     public static final String DSL_LINK_STATUS = "dsl_link_status";
     public static final String DSL_DOWNSTREAM = "dsl_downstream";

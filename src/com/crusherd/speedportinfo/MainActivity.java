@@ -12,8 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.crusherd.speedportinfo.constants.Constants;
 import com.crusherd.speedportinfo.html.HTMLHandlerTask;
@@ -26,6 +28,7 @@ public class MainActivity extends ActionBarActivity {
         @Override
         public void onClick(final View v) {
             try {
+                Toast.makeText(getApplicationContext(), R.string.refreshing, Toast.LENGTH_SHORT).show();
                 final SpeedportContent content = new HTMLHandlerTask().execute().get();
                 updateUI(content);
             } catch (final InterruptedException e) {
@@ -48,8 +51,7 @@ public class MainActivity extends ActionBarActivity {
         try {
             if (!isWifiEnabled()) {
                 enableWifi();
-            }
-            else {
+            } else {
                 final SpeedportContent content = new HTMLHandlerTask().execute().get();
                 updateUI(content);
             }
@@ -96,48 +98,121 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void enableWifi() {
+        Toast.makeText(getApplicationContext(), R.string.wifi_enabling, Toast.LENGTH_SHORT).show();
         final WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
         wifiManager.setWifiEnabled(true);
+        Toast.makeText(getApplicationContext(), R.string.wifi_enabled, Toast.LENGTH_SHORT).show();
     }
 
     private void updateUI(final SpeedportContent content) {
-        TextView textView = (TextView) findViewById(R.id.textViewDeviceNameValue);
-        textView.setText(content.getDeviceName());
 
-        textView = (TextView) findViewById(R.id.textViewDateValue);
+        updateDeviceNameAndType(content);
+        updateDate(content);
+        updateDSLState(content);
+        updateInternetState(content);
+        updateTelephonyState(content);
+        updateDownstream(content);
+        updateUpStream(content);
+        updateWlan24(content);
+        updateWlan5(content);
+        updateSSID(content);
+        updateWPS(content);
+        updateWlanToGo(content);
+        updateFirmware(content);
+        updateSerial(content);
+    }
+
+    private void updateDeviceNameAndType(final SpeedportContent content) {
+        final TextView textView = (TextView) findViewById(R.id.textViewDeviceNameValue);
+        if (content.getDeviceType().isEmpty()) {
+            textView.setText(content.getDeviceName());
+        } else {
+            textView.setText(content.getDeviceName() + " " + content.getDeviceType());
+        }
+    }
+
+    private void updateDate(final SpeedportContent content) {
+        final TextView textView = (TextView) findViewById(R.id.textViewDateValue);
         textView.setText(content.getDate());
+    }
 
-        textView = (TextView) findViewById(R.id.textViewDSLStateValue);
+    private void updateDSLState(final SpeedportContent content) {
+        final TextView textView = (TextView) findViewById(R.id.textViewDSLStateValue);
         textView.setText(content.getDslState());
+    }
 
-        textView = (TextView) findViewById(R.id.textViewInternetStateValue);
+    private void updateInternetState(final SpeedportContent content) {
+        final TextView textView = (TextView) findViewById(R.id.textViewInternetStateValue);
         textView.setText(content.getInternetState());
+    }
 
-        textView = (TextView) findViewById(R.id.textViewDownStreamValue);
+    private void updateTelephonyState(final SpeedportContent content) {
+        // TODO: Add Telephony state
+        final TextView textView = (TextView) findViewById(R.id.textViewTelephonyStateValue);
+        disableRow(textView);
+    }
+
+    private void updateDownstream(final SpeedportContent content) {
+        final TextView textView = (TextView) findViewById(R.id.textViewDownStreamValue);
         textView.setText(content.getDownstream() + Constants.K_BIT_PER_SECOND);
+    }
 
-        textView = (TextView) findViewById(R.id.textViewUpStreamValue);
+    private void updateUpStream(final SpeedportContent content) {
+        final TextView textView = (TextView) findViewById(R.id.textViewUpStreamValue);
         textView.setText(content.getUpstream() + Constants.K_BIT_PER_SECOND);
+    }
 
-        textView = (TextView) findViewById(R.id.textViewWLAN24Value);
+    private void updateWlan24(final SpeedportContent content) {
+        final TextView textView = (TextView) findViewById(R.id.textViewWLAN24Value);
         textView.setText(content.isWlan24Active() ? R.string.active : R.string.deactivated);
+    }
 
-        textView = (TextView) findViewById(R.id.textViewWLAN5Value);
-        textView.setText(content.isWlan5Active() ? R.string.active : R.string.deactivated);
+    private void updateWlan5(final SpeedportContent content) {
+        final TextView textView = (TextView) findViewById(R.id.textViewWLAN5Value);
+        if (content.isWlan5Active()) {
+            textView.setText(R.string.active);
+        } else {
+            disableRow(textView);
+        }
+    }
 
-        textView = (TextView) findViewById(R.id.textViewSSIDValue);
+    private void updateSSID(final SpeedportContent content) {
+        final TextView textView = (TextView) findViewById(R.id.textViewSSIDValue);
         textView.setText(content.getSsid());
+    }
 
-        textView = (TextView) findViewById(R.id.textViewWPSStateValue);
-        textView.setText(content.isWpsActive() ? R.string.active : R.string.deactivated);
+    private void updateWPS(final SpeedportContent content) {
+        final TextView textView = (TextView) findViewById(R.id.textViewWPSStateValue);
+        if (content.isWpsActive()) {
+            textView.setText(R.string.active);
+        } else {
+            disableRow(textView);
+        }
+    }
 
-        textView = (TextView) findViewById(R.id.textViewWLANTOGOStateValue);
-        textView.setText(content.isWlanTOGOActive() ? R.string.active : R.string.deactivated);
+    private void updateWlanToGo(final SpeedportContent content) {
+        final TextView textView = (TextView) findViewById(R.id.textViewWLANTOGOStateValue);
+        if (content.isWlanToGoActive()) {
+            textView.setText(R.string.active);
+        } else {
+            disableRow(textView);
+        }
+    }
 
-        textView = (TextView) findViewById(R.id.textViewFirmwareVersionValue);
+    private void updateFirmware(final SpeedportContent content) {
+        final TextView textView = (TextView) findViewById(R.id.textViewFirmwareVersionValue);
         textView.setText(content.getFirmware());
+    }
 
-        textView = (TextView) findViewById(R.id.textViewSerialValue);
+    private void updateSerial(final SpeedportContent content) {
+        final TextView textView = (TextView) findViewById(R.id.textViewSerialValue);
         textView.setText(content.getSerial());
+    }
+
+    private void disableRow(final View view) {
+        final ViewGroup viewGroup = (ViewGroup) view.getParent();
+        final View viewKey = viewGroup.getChildAt(0);
+        viewKey.setVisibility(View.GONE);
+        view.setVisibility(View.GONE);
     }
 }

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_settings">Einstellungen</string>
     <string name="button_reconnect">Neu verbinden</string>
@@ -10,4 +11,8 @@
     <string name="deactivated">deaktiviert</string>
     <string name="not_active">nicht aktiv</string>
     <string name="button_refresh">Neu laden</string>
+    <string name="telephony">Telefonie</string>
+    <string name="wifi_enabling">Aktiviere WLan</string>
+    <string name="wifi_enabled">WLan aktiviert</string>
+    <string name="refreshing">Aktualisiere&#8230;</string>
 </resources>

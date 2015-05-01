@@ -6,6 +6,7 @@ import java.util.List;
 public class SpeedportContent {
 
     private String deviceName = "";
+    private String deviceType = "";
     private String date = "";
     private String dslState = "";
     private String internetActive = "";
@@ -27,6 +28,14 @@ public class SpeedportContent {
 
     public void setDeviceName(final String deviceName) {
         this.deviceName = deviceName;
+    }
+
+    public String getDeviceType() {
+        return deviceType;
+    }
+
+    public void setDeviceType(final String deviceType) {
+        this.deviceType = deviceType;
     }
 
     public String getDate() {
@@ -101,7 +110,7 @@ public class SpeedportContent {
         this.wpsActive = wpsActive;
     }
 
-    public boolean isWlanTOGOActive() {
+    public boolean isWlanToGoActive() {
         return wlanTOGOActive;
     }
 
