@@ -5,6 +5,11 @@ import android.os.AsyncTask;
 import com.crusherd.speedportinfo.model.SpeedportW724V;
 import com.crusherd.speedportinfo.model.SpeedportW900V;
 
+/**
+ * Task to query Speedports.
+ *
+ * @author Robert Danczak
+ */
 public class HTMLHandlerTask extends AsyncTask<Void, Void, SpeedportContent> {
 
     @Override
@@ -20,7 +25,5 @@ public class HTMLHandlerTask extends AsyncTask<Void, Void, SpeedportContent> {
         }
         return new SpeedportContent();
     }
-
-
 
 }

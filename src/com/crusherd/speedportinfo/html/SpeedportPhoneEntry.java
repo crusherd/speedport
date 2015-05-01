@@ -1,5 +1,10 @@
 package com.crusherd.speedportinfo.html;
 
+/**
+ * Contains the data for a phone entry.
+ *
+ * @author Robert Danczak
+ */
 public class SpeedportPhoneEntry {
 
     private int id;
@@ -8,10 +13,27 @@ public class SpeedportPhoneEntry {
     private String status = "";
     private String voipError = "";
 
+    /**
+     * Creates an empty {@link SpeedportPhoneEntry}.
+     */
     public SpeedportPhoneEntry() {
 
     }
 
+    /**
+     * Creates an {@link SpeedportPhoneEntry} with the given data.
+     *
+     * @param id
+     *            - phone id in the Speedport
+     * @param phoneNumber
+     *            - associated number of the phone
+     * @param failReason
+     *            - reason for not connected
+     * @param status
+     *            - current status of the phone
+     * @param voipError
+     *            - VOIP related error
+     */
     public SpeedportPhoneEntry(final int id, final String phoneNumber, final int failReason, final String status,
             final String voipError) {
         this.id = id;
@@ -22,7 +44,7 @@ public class SpeedportPhoneEntry {
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(final int id) {
@@ -30,7 +52,7 @@ public class SpeedportPhoneEntry {
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return this.phoneNumber;
     }
 
     public void setPhoneNumber(final String phoneNumber) {
@@ -38,7 +60,7 @@ public class SpeedportPhoneEntry {
     }
 
     public int getFailReason() {
-        return failReason;
+        return this.failReason;
     }
 
     public void setFailReason(final int failReason) {
@@ -46,7 +68,7 @@ public class SpeedportPhoneEntry {
     }
 
     public String getStatus() {
-        return status;
+        return this.status;
     }
 
     public void setStatus(final String status) {
@@ -54,7 +76,7 @@ public class SpeedportPhoneEntry {
     }
 
     public String getVoipError() {
-        return voipError;
+        return this.voipError;
     }
 
     public void setVoipError(final String voipError) {

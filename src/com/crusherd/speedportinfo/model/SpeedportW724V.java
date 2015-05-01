@@ -32,11 +32,10 @@ public class SpeedportW724V extends SpeedportHandler {
      * {@inheritDoc} Specific code for a Speedoprt W724V.
      */
     @Override
-    protected SpeedportContent processDataInDevice() throws IOException {
+    protected final SpeedportContent processDataInDevice() throws IOException {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
             return processWithoutReader();
-        }
-        else {
+        } else {
             return processWithReader();
         }
     }
@@ -68,7 +67,7 @@ public class SpeedportW724V extends SpeedportHandler {
      * @throws IOException
      */
     private SpeedportContent processWithoutReader() throws IOException {
-        final BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        final BufferedReader reader = new BufferedReader(new InputStreamReader(this.connection.getInputStream()));
         final SpeedportContent content = new SpeedportContent();
 
         String line = reader.readLine();
@@ -93,7 +92,7 @@ public class SpeedportW724V extends SpeedportHandler {
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private SpeedportContent processWithReader() throws IOException {
-        final JsonReader reader = new JsonReader(new InputStreamReader(connection.getInputStream()));
+        final JsonReader reader = new JsonReader(new InputStreamReader(this.connection.getInputStream()));
         final SpeedportContent content = new SpeedportContent();
         reader.beginArray();
         while (reader.hasNext() && (reader.peek() != JsonToken.END_ARRAY)) {
@@ -106,8 +105,7 @@ public class SpeedportW724V extends SpeedportHandler {
             String varValue = "";
             if (Constants.ADD_PHONE_NUMBER.equals(varID)) {
                 processSubArray(reader, content.getPhoneEntries());
-            }
-            else {
+            } else {
                 varValue = reader.nextString();
             }
             reader.endObject();
@@ -164,40 +162,39 @@ public class SpeedportW724V extends SpeedportHandler {
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private SpeedportPhoneEntry extractPhoneEntry(final JsonReader reader) throws IOException {
+        final int toSkip = 5;
         reader.beginObject();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < toSkip; i++) {
             reader.skipValue();
         }
         final String varIDValue = reader.nextString();
         reader.endObject();
         reader.beginObject();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < toSkip; i++) {
             reader.skipValue();
         }
         final String varPhoneNumberValue = reader.nextString();
         reader.endObject();
         reader.beginObject();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < toSkip; i++) {
             reader.skipValue();
         }
         final String varFailReasonValue = reader.nextString();
         reader.endObject();
         reader.beginObject();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < toSkip; i++) {
             reader.skipValue();
         }
         final String varStatusValue = reader.nextString();
         reader.endObject();
         reader.beginObject();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < toSkip; i++) {
             reader.skipValue();
         }
         final String varVOIPErrorValue = reader.nextString();
         reader.endObject();
 
-        return new SpeedportPhoneEntry(Integer.parseInt(varIDValue), varPhoneNumberValue, Integer
-                .parseInt(varFailReasonValue),
-                varStatusValue,
-                varVOIPErrorValue);
+        return new SpeedportPhoneEntry(Integer.parseInt(varIDValue), varPhoneNumberValue,
+                Integer.parseInt(varFailReasonValue), varStatusValue, varVOIPErrorValue);
     }
 }

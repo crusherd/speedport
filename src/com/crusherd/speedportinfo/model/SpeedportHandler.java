@@ -11,6 +11,11 @@ import android.util.Log;
 import com.crusherd.speedportinfo.constants.Constants;
 import com.crusherd.speedportinfo.html.SpeedportContent;
 
+/**
+ * Parent class for each Speedport model. Children should extend this class.
+ *
+ * @author Robert Danczak
+ */
 public abstract class SpeedportHandler {
 
     /**
@@ -18,10 +23,19 @@ public abstract class SpeedportHandler {
      */
     protected String urlString;
 
+    /**
+     * The connection object to the Speedport model.
+     */
     protected HttpURLConnection connection;
 
+    /**
+     * Creates a new Handler with the given Speedport URL to connecto to.
+     *
+     * @param url
+     *            - The URL to connect to.
+     */
     public SpeedportHandler(final String url) {
-        urlString = url;
+        this.urlString = url;
     }
 
     /**
@@ -56,72 +70,53 @@ public abstract class SpeedportHandler {
     protected void processExtractedData(final SpeedportContent content, final String varID, final String varValue) {
         if (varID.equals(Constants.DEVICE_NAME)) {
             content.setDeviceName(varValue);
-        }
-        else if (varID.equals(Constants.DEVICE_TYPE)) {
+        } else if (varID.equals(Constants.DEVICE_TYPE)) {
             content.setDeviceType(varValue);
-        }
-        else if (varID.equals(Constants.DATETIME)) {
+        } else if (varID.equals(Constants.DATETIME)) {
             content.setDate(varValue);
-        }
-        else if (varID.equals(Constants.DSL_LINK_STATUS)) {
+        } else if (varID.equals(Constants.DSL_LINK_STATUS)) {
             content.setDslState(varValue);
-        }
-        else if (varID.equals(Constants.ONLINE_STATUS)) {
+        } else if (varID.equals(Constants.ONLINE_STATUS)) {
             content.setInternetState(varValue);
-        }
-        else if (varID.equals(Constants.DSL_DOWNSTREAM)) {
+        } else if (varID.equals(Constants.DSL_DOWNSTREAM)) {
             content.setDownstream(varValue);
-        }
-        else if (varID.equals(Constants.DSL_UPSTREAM)) {
+        } else if (varID.equals(Constants.DSL_UPSTREAM)) {
             content.setUpstream(varValue);
-        }
-        else if (varID.equals(Constants.USE_WLAN)) {
-            if ("0".equals(varValue)) {
+        } else if (varID.equals(Constants.USE_WLAN)) {
+            if (Constants.ZERO.equals(varValue)) {
                 content.setWlan24Active(false);
-            }
-            else {
+            } else {
                 content.setWlan24Active(true);
             }
-        }
-        else if (varID.equals(Constants.USE_WLAN_5GHZ)) {
-            if ("0".equals(varValue)) {
+        } else if (varID.equals(Constants.USE_WLAN_5GHZ)) {
+            if (Constants.ZERO.equals(varValue)) {
                 content.setWlan5Active(false);
-            }
-            else {
+            } else {
                 content.setWlan5Active(true);
             }
-        }
-        else if (varID.equals(Constants.WLAN_SSID)) {
+        } else if (varID.equals(Constants.WLAN_SSID)) {
             content.setSsid(varValue);
-        }
-        else if (varID.contains(Constants.USE_WPS)) {
-            if ("0".equals(varValue)) {
+        } else if (varID.contains(Constants.USE_WPS)) {
+            if (Constants.ZERO.equals(varValue)) {
                 content.setWpsActive(false);
-            }
-            else {
+            } else {
                 content.setWpsActive(true);
             }
-            ;
-        }
-        else if (varID.equals(Constants.HSFON_STATUS)) {
+        } else if (varID.equals(Constants.HSFON_STATUS)) {
             if ("0".equals(varValue)) {
                 content.setWlanTOGOActive(false);
-            }
-            else {
+            } else {
                 content.setWlanTOGOActive(true);
             }
-            ;
-        }
-        else if (varID.equals(Constants.FIRMWARE_VERSION)) {
+        } else if (varID.equals(Constants.FIRMWARE_VERSION)) {
             content.setFirmware(varValue);
-        }
-        else if (varID.equals(Constants.SERIAL_NUMBER)) {
+        } else if (varID.equals(Constants.SERIAL_NUMBER)) {
             content.setSerial(varValue);
         }
     }
 
     /**
-     * @return
+     * @return A filled and validated {@link SpeedportContent}.
      */
     public SpeedportContent processAndCheckValidity() {
         SpeedportContent content = new SpeedportContent();
@@ -143,15 +138,15 @@ public abstract class SpeedportHandler {
     }
 
     private void establishConnection() throws IOException {
-        final URL url = new URL(urlString);
-        connection = (HttpURLConnection) url.openConnection();
-        connection.setReadTimeout(1000);
-        connection.setUseCaches(false);
+        final URL url = new URL(this.urlString);
+        this.connection = (HttpURLConnection) url.openConnection();
+        this.connection.setReadTimeout(1000);
+        this.connection.setUseCaches(false);
     }
 
     private void disconnect() {
-        if (connection != null) {
-            connection.disconnect();
+        if (this.connection != null) {
+            this.connection.disconnect();
         }
     }
 

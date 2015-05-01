@@ -21,6 +21,11 @@ import com.crusherd.speedportinfo.constants.Constants;
 import com.crusherd.speedportinfo.html.HTMLHandlerTask;
 import com.crusherd.speedportinfo.html.SpeedportContent;
 
+/**
+ * Main class for the Speedport App.
+ *
+ * @author Robert Danczak
+ */
 public class MainActivity extends ActionBarActivity {
 
     private final OnClickListener refreshContent = new OnClickListener() {
@@ -46,7 +51,7 @@ public class MainActivity extends ActionBarActivity {
 
         setContentView(R.layout.activity_main);
         final Button refreshButton = (Button) findViewById(R.id.buttonRefresh);
-        refreshButton.setOnClickListener(refreshContent);
+        refreshButton.setOnClickListener(this.refreshContent);
 
         try {
             if (!isWifiEnabled()) {
