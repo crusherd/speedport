@@ -35,7 +35,7 @@ public abstract class SpeedportHandler {
      *            - The URL to connect to.
      */
     public SpeedportHandler(final String url) {
-        this.urlString = url;
+        urlString = url;
     }
 
     /**
@@ -138,15 +138,15 @@ public abstract class SpeedportHandler {
     }
 
     private void establishConnection() throws IOException {
-        final URL url = new URL(this.urlString);
-        this.connection = (HttpURLConnection) url.openConnection();
-        this.connection.setReadTimeout(1000);
-        this.connection.setUseCaches(false);
+        final URL url = new URL(urlString);
+        connection = (HttpURLConnection) url.openConnection();
+        connection.setReadTimeout(1000);
+        connection.setUseCaches(false);
     }
 
     private void disconnect() {
-        if (this.connection != null) {
-            this.connection.disconnect();
+        if (connection != null) {
+            connection.disconnect();
         }
     }
 

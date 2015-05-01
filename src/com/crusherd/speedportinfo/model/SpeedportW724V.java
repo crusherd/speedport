@@ -67,7 +67,7 @@ public class SpeedportW724V extends SpeedportHandler {
      * @throws IOException
      */
     private SpeedportContent processWithoutReader() throws IOException {
-        final BufferedReader reader = new BufferedReader(new InputStreamReader(this.connection.getInputStream()));
+        final BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         final SpeedportContent content = new SpeedportContent();
 
         String line = reader.readLine();
@@ -92,7 +92,7 @@ public class SpeedportW724V extends SpeedportHandler {
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private SpeedportContent processWithReader() throws IOException {
-        final JsonReader reader = new JsonReader(new InputStreamReader(this.connection.getInputStream()));
+        final JsonReader reader = new JsonReader(new InputStreamReader(connection.getInputStream()));
         final SpeedportContent content = new SpeedportContent();
         reader.beginArray();
         while (reader.hasNext() && (reader.peek() != JsonToken.END_ARRAY)) {

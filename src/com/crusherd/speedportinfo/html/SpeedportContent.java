@@ -28,7 +28,7 @@ public class SpeedportContent {
     private List<SpeedportPhoneEntry> phoneEntries = new ArrayList<SpeedportPhoneEntry>();
 
     public String getDeviceName() {
-        return this.deviceName;
+        return deviceName;
     }
 
     public void setDeviceName(final String deviceName) {
@@ -44,7 +44,7 @@ public class SpeedportContent {
     }
 
     public String getDate() {
-        return this.date;
+        return date;
     }
 
     public void setDate(final String date) {
@@ -52,7 +52,7 @@ public class SpeedportContent {
     }
 
     public String getDslState() {
-        return this.dslState;
+        return dslState;
     }
 
     public void setDslState(final String dslState) {
@@ -60,7 +60,7 @@ public class SpeedportContent {
     }
 
     public String getInternetState() {
-        return this.internetState;
+        return internetState;
     }
 
     public void setInternetState(final String internetState) {
@@ -68,7 +68,7 @@ public class SpeedportContent {
     }
 
     public String getDownstream() {
-        return this.downstream;
+        return downstream;
     }
 
     public void setDownstream(final String downstream) {
@@ -76,7 +76,7 @@ public class SpeedportContent {
     }
 
     public String getUpstream() {
-        return this.upstream;
+        return upstream;
     }
 
     public void setUpstream(final String upstream) {
@@ -84,7 +84,7 @@ public class SpeedportContent {
     }
 
     public boolean isWlan24Active() {
-        return this.wlan24Active;
+        return wlan24Active;
     }
 
     public void setWlan24Active(final boolean wlan24Active) {
@@ -92,7 +92,7 @@ public class SpeedportContent {
     }
 
     public boolean isWlan5Active() {
-        return this.wlan5Active;
+        return wlan5Active;
     }
 
     public void setWlan5Active(final boolean wlan5Active) {
@@ -100,7 +100,7 @@ public class SpeedportContent {
     }
 
     public String getSsid() {
-        return this.ssid;
+        return ssid;
     }
 
     public void setSsid(final String ssid) {
@@ -108,7 +108,7 @@ public class SpeedportContent {
     }
 
     public boolean isWpsActive() {
-        return this.wpsActive;
+        return wpsActive;
     }
 
     public void setWpsActive(final boolean wpsActive) {
@@ -116,7 +116,7 @@ public class SpeedportContent {
     }
 
     public boolean isWlanToGoActive() {
-        return this.wlanTOGOActive;
+        return wlanTOGOActive;
     }
 
     public void setWlanTOGOActive(final boolean wlanTOGOActive) {
@@ -124,7 +124,7 @@ public class SpeedportContent {
     }
 
     public String getFirmware() {
-        return this.firmware;
+        return firmware;
     }
 
     public void setFirmware(final String firmware) {
@@ -132,7 +132,7 @@ public class SpeedportContent {
     }
 
     public String getSerial() {
-        return this.serial;
+        return serial;
     }
 
     public void setSerial(final String serial) {
@@ -140,7 +140,7 @@ public class SpeedportContent {
     }
 
     public boolean isValid() {
-        return this.valid;
+        return valid;
     }
 
     public void setValid(final boolean valid) {
@@ -148,7 +148,7 @@ public class SpeedportContent {
     }
 
     public List<SpeedportPhoneEntry> getPhoneEntries() {
-        return this.phoneEntries;
+        return phoneEntries;
     }
 
     public void setPhoneEntries(final List<SpeedportPhoneEntry> phoneEntries) {
